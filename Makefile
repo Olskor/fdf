@@ -19,6 +19,9 @@ MAGENTA = \033[0;95m
 CYAN = \033[0;96m
 WHITE = \033[0;97m
 
+WIDTH = 1920
+HEIGHT = 1080
+
 SRC_FILES	=	main map_reader position_handler get_next_line projection
 LIBS_FILES	=	libft libmlx
 
@@ -39,7 +42,7 @@ $(NAME):	$(OBJ)
 
 $(OBJ_DIR)%.o: $(SRC_DIR)%.c | $(OBJF)
 			@echo "$(YELLOW)Compiling: $< $(DEF_COLOR)"
-			@$(CC) $(CFLAGS) $(INCLUDE) -c $< -o $@
+			@$(CC) $(CFLAGS) $(INCLUDE) -D WIDTH=$(WIDTH) -D HEIGHT=$(HEIGHT) -c $< -o $@
 
 $(OBJF):
 			@mkdir -p $(OBJ_DIR)

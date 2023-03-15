@@ -6,7 +6,7 @@
 /*   By: jauffret <jauffret@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/13 12:36:42 by jauffret          #+#    #+#             */
-/*   Updated: 2023/03/15 17:35:30 by jauffret         ###   ########.fr       */
+/*   Updated: 2023/03/15 18:36:25 by jauffret         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,8 +20,12 @@
 # include <X11/keysym.h>
 # include <math.h>
 
-# define HE 1080
-# define WI 1920
+# ifndef HEIGHT
+#  define HEIGHT 1080
+# endif
+# ifndef WIDTH
+#  define WIDTH 1920
+# endif
 
 typedef struct s_Vector3
 {

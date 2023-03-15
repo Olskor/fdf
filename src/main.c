@@ -6,7 +6,7 @@
 /*   By: jauffret <jauffret@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/11 17:07:13 by jauffret          #+#    #+#             */
-/*   Updated: 2023/03/15 18:08:17 by jauffret         ###   ########.fr       */
+/*   Updated: 2023/03/15 18:34:11 by jauffret         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -120,8 +120,8 @@ int	main(int argc, char **argv)
 	data.mlx = mlx_init();
 	if (!data.mlx)
 		return (1);
-	data.wi = WI;
-	data.he = HE;
+	data.wi = WIDTH;
+	data.he = HEIGHT;
 	data.win = mlx_new_window(data.mlx, data.wi, data.he, "fdf");
 	if (!data.win)
 	{
@@ -131,7 +131,7 @@ int	main(int argc, char **argv)
 	data.f = iso_proj;
 	dataset(&data, argv[1]);
 	mlx_loop_hook(data.mlx, &render, &data);
-	mlx_key_hook(data.win, &handle_input, &data);
+	mlx_hook(data.win, 2, (1L << 0), &handle_input, &data);
 	mlx_loop(data.mlx);
 	mlx_destroy_window(data.mlx, data.win);
 	mlx_destroy_display(data.mlx);
