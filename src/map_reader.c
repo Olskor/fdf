@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   map_reader.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jauffret <jauffret@student.42.fr>          +#+  +:+       +#+        */
+/*   By: olskor <olskor@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/13 17:08:52 by jauffret          #+#    #+#             */
-/*   Updated: 2023/03/15 16:46:08 by jauffret         ###   ########.fr       */
+/*   Updated: 2023/03/16 03:04:36 by olskor           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,34 @@ int	ft_counti(char *src)
 	return (i);
 }
 
+t_map	map_color(t_map map, char *file, int i)
+{
+	char	*txt;
+	char	**val;
+	int		obj;
+	int		j;
+
+	map.mapcol = malloc(sizeof(int *) * map.sizey);
+	obj = open(file, O_RDONLY);
+	while (i < map.sizey)
+	{
+		map.mapcol[i] = malloc(sizeof(int) * map.sizex);
+		txt = get_next_line(obj);
+		j = 0;
+		val = ft_split(txt, ' ');
+		free(txt);
+		while (j < map.sizex)
+		{
+			map.mapcol[i][j] = atoibaseskip(val[j]);
+			free(val[j++]);
+		}
+		free(val);
+		i++;
+	}
+	close(obj);
+	return (map);
+}
+
 t_map	map_create(t_map map, char *file, int i)
 {
 	char	*txt;
@@ -67,7 +95,7 @@ t_map	map_create(t_map map, char *file, int i)
 		i++;
 	}
 	close(obj);
-	return (map);
+	return (map_color(map, file, 0));
 }
 
 t_map	get_map(char *file)

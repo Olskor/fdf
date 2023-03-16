@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   fdf.h                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jauffret <jauffret@student.42.fr>          +#+  +:+       +#+        */
+/*   By: olskor <olskor@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/13 12:36:42 by jauffret          #+#    #+#             */
-/*   Updated: 2023/03/15 18:36:25 by jauffret         ###   ########.fr       */
+/*   Updated: 2023/03/16 01:42:13 by olskor           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,6 +67,15 @@ typedef struct s_map
 	int	**mapcol;
 }		t_map;
 
+typedef struct s_img
+{
+	void	*mlx_img;
+	char	*addr;
+	int		bpp;
+	int		line_len;
+	int		endian;
+}	t_img;
+
 typedef struct s_data	t_data;
 struct s_data
 {
@@ -81,6 +90,7 @@ struct s_data
 	float	near;
 	float	fov;
 	float	theta;
+	t_img	img;
 	t_Int2	(*f)();
 };
 
@@ -93,5 +103,8 @@ t_Int2		iso_proj(t_Vector3 obj, t_data *data);
 t_mat4		initmat4(int val);
 t_Int2		con_proj(t_Vector3 obj, t_data *data);
 void		dataset(t_data *data, char *txt);
+void		img_pix_put(t_img *img, int x, int y, int color);
+int			render(t_data *data);
+int			atoibaseskip(char *nbr);
 
 #endif
