@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   projection.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jauffret <jauffret@student.42.fr>          +#+  +:+       +#+        */
+/*   By: olskor <olskor@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/14 14:31:34 by jauffret          #+#    #+#             */
-/*   Updated: 2023/03/15 17:37:48 by jauffret         ###   ########.fr       */
+/*   Updated: 2023/03/19 20:52:06 by olskor           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,8 +65,8 @@ t_Vector3	transform(t_Vector3 i, t_data *data)
 	t_Vector3	o;
 	t_mat4		rotmat;
 
-	i.x += (float)data->map.sizey / 2;
-	i.y -= (float)data->map.sizex / 2;
+	i.x += ((float)data->map.sizey / 2);
+	i.y -= ((float)data->map.sizex / 2);
 	rotmat = initmat4(0);
 	rotmat.m[0][0] = cos(data->theta);
 	rotmat.m[1][0] = -sin(data->theta);

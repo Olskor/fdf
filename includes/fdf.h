@@ -6,7 +6,7 @@
 /*   By: olskor <olskor@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/13 12:36:42 by jauffret          #+#    #+#             */
-/*   Updated: 2023/03/16 01:42:13 by olskor           ###   ########.fr       */
+/*   Updated: 2023/03/19 20:45:25 by olskor           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,7 @@ typedef struct s_Vector3
 	float	x;
 	float	y;
 	float	z;
+	float	w;
 }		t_Vector3;
 
 typedef struct s_triangle
@@ -76,6 +77,15 @@ typedef struct s_img
 	int		endian;
 }	t_img;
 
+typedef struct s_cam
+{
+	float		near;
+	float		far;
+	float		fov;
+	t_Vector3	pos;
+	t_Vector3	rot;
+}	t_cam;
+
 typedef struct s_data	t_data;
 struct s_data
 {
@@ -106,5 +116,7 @@ void		dataset(t_data *data, char *txt);
 void		img_pix_put(t_img *img, int x, int y, int color);
 int			render(t_data *data);
 int			atoibaseskip(char *nbr);
+int			loop(t_data *data);
+int			mouse_handle(int button, int x, int y, t_data *data);
 
 #endif

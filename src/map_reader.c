@@ -6,7 +6,7 @@
 /*   By: olskor <olskor@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/13 17:08:52 by jauffret          #+#    #+#             */
-/*   Updated: 2023/03/16 03:04:36 by olskor           ###   ########.fr       */
+/*   Updated: 2023/03/19 19:16:23 by olskor           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,9 @@ void	dataset(t_data *data, char *txt)
 	data->near = 0.1f;
 	data->far = 1000.0f;
 	data->theta = 0.0f;
+	data->f = &iso_proj;
+	mlx_mouse_hide(data->mlx, data->win);
+	mlx_mouse_move(data->mlx, data->win, WIDTH / 2, HEIGHT / 2);
 }
 
 int	ft_counti(char *src)

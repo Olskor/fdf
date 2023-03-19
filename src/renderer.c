@@ -6,11 +6,38 @@
 /*   By: olskor <olskor@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/16 01:13:30 by olskor            #+#    #+#             */
-/*   Updated: 2023/03/16 02:12:13 by olskor           ###   ########.fr       */
+/*   Updated: 2023/03/19 19:27:43 by olskor           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
+
+int	loop(t_data *data)
+{
+	t_Int2	mouspos;
+
+	render(data);
+	mlx_mouse_get_pos(data->mlx, data->win, &mouspos.x, &mouspos.y);
+	mlx_mouse_move(data->mlx, data->win, WIDTH / 2, HEIGHT / 2);
+	data->g_mpos.x += (mouspos.x - WIDTH / 2) / 2;
+	data->g_mpos.y += (mouspos.y - HEIGHT / 2) / 2;
+}
+
+int mouse_handle(int button, int x, int y, t_data *data)
+{
+	if (button == XK_Pointer_Button1)
+	{
+		data->g_mzoom *= 2;
+		data->fov -= 2.0f;
+	}
+	if (button == XK_Pointer_Button2)
+	{
+		data->g_mzoom /= 2;
+		data->fov += 2.0f;
+	}
+	if (data->g_mzoom <= 0)
+		data->g_mzoom = 1;
+}
 
 void	img_pix_put(t_img *img, int x, int y, int color)
 {
