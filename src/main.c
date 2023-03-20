@@ -6,7 +6,7 @@
 /*   By: jauffret <jauffret@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/11 17:07:13 by jauffret          #+#    #+#             */
-/*   Updated: 2023/03/20 13:20:02 by jauffret         ###   ########.fr       */
+/*   Updated: 2023/03/20 14:41:07 by jauffret         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,14 +14,22 @@
 
 int	close_window(t_data *data)
 {
-	data->map.sizey = 0;
+	int	i;
+
 	mlx_destroy_image(data->mlx, data->img.mlx_img);
 	mlx_destroy_window(data->mlx, data->win);
 	mlx_destroy_display(data->mlx);
+	i = 0;
+	while (i < data->map.sizey)
+	{
+		free(data->map.mappos[i]);
+		free(data->map.mapcol[i]);
+		i++;
+	}
 	free(data->mlx);
 	free(data->map.mappos);
 	free(data->map.mapcol);
-	return (0);
+	exit(0);
 }
 
 int	main(int argc, char **argv)

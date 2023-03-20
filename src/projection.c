@@ -3,55 +3,24 @@
 /*                                                        :::      ::::::::   */
 /*   projection.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: olskor <olskor@student.42.fr>              +#+  +:+       +#+        */
+/*   By: jauffret <jauffret@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/14 14:31:34 by jauffret          #+#    #+#             */
-/*   Updated: 2023/03/19 20:52:06 by olskor           ###   ########.fr       */
+/*   Updated: 2023/03/20 15:35:02 by jauffret         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 
-t_Vector3	matrixmul(t_Vector3 i, t_mat4 m)
-{
-	t_Vector3	o;
-	float		w;
-
-	o.x = i.x * m.m[0][0] + i.y * m.m[1][0] + i.z * m.m[2][0] + m.m[3][0];
-	o.y = i.x * m.m[0][1] + i.y * m.m[1][1] + i.z * m.m[2][1] + m.m[3][1];
-	o.z = i.x * m.m[0][2] + i.y * m.m[1][2] + i.z * m.m[2][2] + m.m[3][2];
-	w = i.x * m.m[0][3] + i.y * m.m[1][3] + i.z * m.m[2][3] + m.m[3][3];
-	if (w != 0.0f)
-	{
-		o.x /= w;
-		o.y /= w;
-		o.z /= w;
-	}
-	return (o);
-}
-
-int	max(int x, int y)
-{
-	if (x > y)
-		return (x);
-	return (y);
-}
-
 t_Int2	iso_proj(t_Vector3 obj, t_data *data)
 {
 	t_Int2	pos;
-	t_mat4	rotmat;
 
 	obj.x += (float)data->map.sizey / 2;
 	obj.y -= (float)data->map.sizex / 2;
-	rotmat = initmat4(0);
-	rotmat.m[0][0] = cos(data->theta);
-	rotmat.m[1][0] = -sin(data->theta);
-	rotmat.m[0][1] = sin(data->theta);
-	rotmat.m[1][1] = cos(data->theta);
-	rotmat.m[2][2] = 1;
-	rotmat.m[3][3] = 1;
-	obj = matrixmul(obj, rotmat);
+	obj = rotz(obj, data->zrot);
+	obj = rotx(obj, data->xrot);
+	obj = roty(obj, data->yrot);
 	obj.x += data->g_mpos.x + data->g_mpos.y;
 	obj.y += data->g_mpos.y - data->g_mpos.x;
 	pos.x = (data->wi / 2) + data->g_mzoom * (obj.y - obj.x) / sqrt(2);
@@ -63,18 +32,12 @@ t_Int2	iso_proj(t_Vector3 obj, t_data *data)
 t_Vector3	transform(t_Vector3 i, t_data *data)
 {
 	t_Vector3	o;
-	t_mat4		rotmat;
 
 	i.x += ((float)data->map.sizey / 2);
 	i.y -= ((float)data->map.sizex / 2);
-	rotmat = initmat4(0);
-	rotmat.m[0][0] = cos(data->theta);
-	rotmat.m[1][0] = -sin(data->theta);
-	rotmat.m[0][1] = sin(data->theta);
-	rotmat.m[1][1] = cos(data->theta);
-	rotmat.m[2][2] = 1;
-	rotmat.m[3][3] = 1;
-	i = matrixmul(i, rotmat);
+	i = rotz(i, data->zrot);
+	i = rotx(i, data->xrot);
+	i = roty(i, data->yrot);
 	o.x = i.x + data->g_mpos.x;
 	o.y = i.z + data->g_mpos.y;
 	o.z = -i.y - (float)max(data->map.sizex, data->map.sizey);

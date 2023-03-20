@@ -6,7 +6,7 @@
 /*   By: jauffret <jauffret@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/13 12:36:42 by jauffret          #+#    #+#             */
-/*   Updated: 2023/03/20 13:20:23 by jauffret         ###   ########.fr       */
+/*   Updated: 2023/03/20 15:36:22 by jauffret         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,7 +99,9 @@ struct s_data
 	float	far;
 	float	near;
 	float	fov;
-	float	theta;
+	float	zrot;
+	float	yrot;
+	float	xrot;
 	t_Int2	mouspos;
 	t_img	img;
 	t_Int2	(*f)();
@@ -122,5 +124,10 @@ int			mouse_handle(int button, int x, int y, t_data *data);
 int			input_next(int keysym, t_data *data);
 int			handle_input(int keysym, t_data *data);
 int			close_window(t_data *data);
+t_Vector3	matrixmul(t_Vector3 i, t_mat4 m);
+int			max(int x, int y);
+t_Vector3	rotz(t_Vector3 i, float theta);
+t_Vector3	rotx(t_Vector3 i, float theta);
+t_Vector3	roty(t_Vector3 i, float theta);
 
 #endif

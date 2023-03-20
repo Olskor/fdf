@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   map_reader.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: olskor <olskor@student.42.fr>              +#+  +:+       +#+        */
+/*   By: jauffret <jauffret@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/13 17:08:52 by jauffret          #+#    #+#             */
-/*   Updated: 2023/03/19 21:26:26 by olskor           ###   ########.fr       */
+/*   Updated: 2023/03/20 15:33:43 by jauffret         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,9 @@ void	dataset(t_data *data, char *txt)
 	data->fov = 90.0f;
 	data->near = 0.1f;
 	data->far = 1000.0f;
-	data->theta = 0.0f;
+	data->zrot = 0.0f;
+	data->xrot = 0.0f;
+	data->yrot = 0.0f;
 	data->f = &iso_proj;
 	mlx_mouse_hide(data->mlx, data->win);
 	mlx_mouse_move(data->mlx, data->win, WIDTH / 2, HEIGHT / 2);
@@ -38,8 +40,8 @@ int	ft_counti(char *src)
 	text = ft_split(src, ' ');
 	while (text[i])
 	{
-		i++;
 		free(text[i]);
+		i++;
 	}
 	free(text);
 	return (i);
