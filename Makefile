@@ -5,7 +5,7 @@ LIB			= libs/
 SRC_DIR		= src/
 OBJ_DIR		= obj/
 CC			= gcc
-CFLAGS		= -I
+CFLAGS		= -Wall -Werror -Wextra -I
 RM			= rm -f
 AR			= ar rcs
 
@@ -19,10 +19,10 @@ MAGENTA = \033[0;95m
 CYAN = \033[0;96m
 WHITE = \033[0;97m
 
-WIDTH = 1200
-HEIGHT = 700
+WIDTH = 1920
+HEIGHT = 1080
 
-SRC_FILES	=	main map_reader position_handler get_next_line projection renderer atoibase
+SRC_FILES	=	main map_reader position_handler get_next_line projection renderer atoibase input_handler
 LIBS_FILES	=	libft libmlx
 
 SRC 		= 	$(addprefix $(SRC_DIR), $(addsuffix .c, $(SRC_FILES)))

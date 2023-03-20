@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: olskor <olskor@student.42.fr>              +#+  +:+       +#+        */
+/*   By: jauffret <jauffret@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/11 17:07:13 by jauffret          #+#    #+#             */
-/*   Updated: 2023/03/20 13:14:08 by olskor           ###   ########.fr       */
+/*   Updated: 2023/03/20 13:20:02 by jauffret         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,42 +22,6 @@ int	close_window(t_data *data)
 	free(data->map.mappos);
 	free(data->map.mapcol);
 	return (0);
-}
-
-int	input_next(int keysym, t_data *data)
-{
-	if (keysym == XK_Page_Up)
-		data->fov -= 2.0f;
-	if (keysym == XK_Page_Down)
-		data->fov += 2.0f;
-	if (keysym == XK_c)
-		data->f = con_proj;
-	if (keysym == XK_i)
-		data->f = iso_proj;
-	if (keysym == XK_Escape)
-		return (close_window(data));
-	return (0);
-}
-
-int	handle_input(int keysym, t_data *data)
-{
-	if (keysym == XK_Left)
-		data->g_mpos.x -= 1;
-	if (keysym == XK_Right)
-		data->g_mpos.x += 1;
-	if (keysym == XK_Up)
-		data->g_mpos.y -= 1;
-	if (keysym == XK_Down)
-		data->g_mpos.y += 1;
-	if (keysym == XK_Page_Up)
-		data->g_mzoom *= 2;
-	if (keysym == XK_Page_Down)
-		data->g_mzoom /= 2;
-	if (keysym == XK_a)
-		data->theta += 0.1f;
-	if (keysym == XK_d)
-		data->theta -= 0.1f;
-	return (input_next(keysym, data));
 }
 
 int	main(int argc, char **argv)

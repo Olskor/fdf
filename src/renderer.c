@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   renderer.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: olskor <olskor@student.42.fr>              +#+  +:+       +#+        */
+/*   By: jauffret <jauffret@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/16 01:13:30 by olskor            #+#    #+#             */
-/*   Updated: 2023/03/19 22:35:22 by olskor           ###   ########.fr       */
+/*   Updated: 2023/03/20 13:21:50 by jauffret         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,28 +25,7 @@ int	loop(t_data *data)
 		data->fov = 1.0f;
 	if (data->fov > 160.0f)
 		data->fov = 160.0f;
-}
-
-int mouse_handle(int button, int x, int y, t_data *data)
-{
-	if (button == 4)
-	{
-		data->g_mzoom *= 2;
-		data->fov -= 2.0f;
-		printf("%d", button);
-	}
-	if (button == 5)
-	{
-		data->g_mzoom /= 2;
-		data->fov += 2.0f;
-	}
-	if (button == 1)
-	{
-		data->g_mpos.x += (data->mouspos.x - WIDTH / 2) / 2;
-		data->g_mpos.y += (data->mouspos.y - HEIGHT / 2) / 2;
-	}
-	if (data->g_mzoom <= 0)
-		data->g_mzoom = 1;
+	return (0);
 }
 
 void	img_pix_put(t_img *img, int x, int y, int color)

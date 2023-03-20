@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   atoibase.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: olskor <olskor@student.42.fr>              +#+  +:+       +#+        */
+/*   By: jauffret <jauffret@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/16 01:33:00 by olskor            #+#    #+#             */
-/*   Updated: 2023/03/16 03:00:19 by olskor           ###   ########.fr       */
+/*   Updated: 2023/03/20 13:22:11 by jauffret         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,7 +99,6 @@ int	atoibaseskip(char *nbr)
 	int	atoi;
 
 	i = 0;
-	atoi == 0;
 	while (nbr[i] && nbr[i] != ',')
 		i++;
 	if (nbr[i++] == ',')

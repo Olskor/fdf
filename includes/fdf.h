@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   fdf.h                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: olskor <olskor@student.42.fr>              +#+  +:+       +#+        */
+/*   By: jauffret <jauffret@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/13 12:36:42 by jauffret          #+#    #+#             */
-/*   Updated: 2023/03/19 21:24:58 by olskor           ###   ########.fr       */
+/*   Updated: 2023/03/20 13:20:23 by jauffret         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -119,5 +119,8 @@ int			render(t_data *data);
 int			atoibaseskip(char *nbr);
 int			loop(t_data *data);
 int			mouse_handle(int button, int x, int y, t_data *data);
+int			input_next(int keysym, t_data *data);
+int			handle_input(int keysym, t_data *data);
+int			close_window(t_data *data);
 
 #endif
