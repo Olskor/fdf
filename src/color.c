@@ -1,59 +1,38 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   position_handler.c                                 :+:      :+:    :+:   */
+/*   color.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jauffret <jauffret@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/03/13 16:36:45 by jauffret          #+#    #+#             */
-/*   Updated: 2023/03/20 16:27:42 by jauffret         ###   ########.fr       */
+/*   Created: 2023/03/20 16:17:41 by jauffret          #+#    #+#             */
+/*   Updated: 2023/03/20 16:18:41 by jauffret         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 
-int	get_sign(int i)
+int	create_trgb(int t, int r, int g, int b)
 {
-	if (i >= 0)
-		return (1);
-	return (-1);
+	return (t << 24 | r << 16 | g << 8 | b);
 }
 
-t_mat4	initmat4(int val)
+int	get_t(int trgb)
 {
-	t_mat4	matrix;
-	int		i;
-	int		j;
-
-	i = 0;
-	while (i < 4)
-	{
-		j = 0;
-		while (j < 4)
-		{
-			matrix.m[i][j] = val;
-			j++;
-		}
-		i++;
-	}
-	return (matrix);
+	return ((trgb >> 24) & 0xFF);
 }
 
-t_Vector3	vector3(float x, float y, float z)
+int	get_r(int trgb)
 {
-	t_Vector3	pos;
-
-	pos.x = x;
-	pos.y = y;
-	pos.z = z;
-	return (pos);
+	return ((trgb >> 16) & 0xFF);
 }
 
-t_Int2	int2(float x, float y)
+int	get_g(int trgb)
 {
-	t_Int2	pos;
+	return ((trgb >> 8) & 0xFF);
+}
 
-	pos.x = x;
-	pos.y = y;
-	return (pos);
+int	get_b(int trgb)
+{
+	return (trgb & 0xFF);
 }

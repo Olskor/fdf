@@ -22,7 +22,7 @@ WHITE = \033[0;97m
 WIDTH = 1920
 HEIGHT = 1080
 
-SRC_FILES	=	main map_reader position_handler get_next_line projection renderer atoibase input_handler matrix
+SRC_FILES	=	main map_reader position_handler get_next_line projection renderer atoibase input_handler matrix color line_drawer
 LIBS_FILES	=	libft libmlx
 
 SRC 		= 	$(addprefix $(SRC_DIR), $(addsuffix .c, $(SRC_FILES)))

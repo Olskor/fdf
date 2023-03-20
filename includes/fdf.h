@@ -6,7 +6,7 @@
 /*   By: jauffret <jauffret@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/13 12:36:42 by jauffret          #+#    #+#             */
-/*   Updated: 2023/03/20 15:36:22 by jauffret         ###   ########.fr       */
+/*   Updated: 2023/03/20 16:29:15 by jauffret         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -111,7 +111,6 @@ t_Vector3	vector3(float x, float y, float z);
 int			get_sign(int i);
 t_Int2		int2(float x, float y);
 t_map		get_map(char *file);
-int			checkline(t_data *data, t_Int2 pos1, t_Int2 pos2);
 t_Int2		iso_proj(t_Vector3 obj, t_data *data);
 t_mat4		initmat4(int val);
 t_Int2		con_proj(t_Vector3 obj, t_data *data);
@@ -129,5 +128,11 @@ int			max(int x, int y);
 t_Vector3	rotz(t_Vector3 i, float theta);
 t_Vector3	rotx(t_Vector3 i, float theta);
 t_Vector3	roty(t_Vector3 i, float theta);
+void		draw_line(t_data *data, t_Int2 pos1, t_Int2 pos2);
+int			create_trgb(int t, int r, int g, int b);
+int			get_t(int trgb);
+int			get_r(int trgb);
+int			get_g(int trgb);
+int			get_b(int trgb);
 
 #endif
