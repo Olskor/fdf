@@ -6,7 +6,7 @@
 /*   By: jauffret <jauffret@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/11 17:07:13 by jauffret          #+#    #+#             */
-/*   Updated: 2023/03/20 14:41:07 by jauffret         ###   ########.fr       */
+/*   Updated: 2023/03/20 18:48:42 by jauffret         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,14 +49,12 @@ int	main(int argc, char **argv)
 		free(data.win);
 		return (1);
 	}
-	dataset(&data, argv[1]);
+	if (!dataset(&data, argv[1]))
+		return (write(2, "erreur: map format\n", 19));
 	data.img.mlx_img = mlx_new_image(data.mlx, WIDTH, HEIGHT);
 	data.img.addr = mlx_get_data_addr(data.img.mlx_img, &data.img.bpp,
 			&data.img.line_len, &data.img.endian);
-	mlx_loop_hook(data.mlx, &loop, &data);
-	mlx_hook(data.win, 4, 1L << 2, &mouse_handle, &data);
-	mlx_hook(data.win, 2, 1L << 0, &handle_input, &data);
-	mlx_hook(data.win, 17, 1L << 0, &close_window, &data);
+	hook_setup(&data);
 	mlx_loop(data.mlx);
 	return (0);
 }

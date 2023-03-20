@@ -6,7 +6,7 @@
 /*   By: jauffret <jauffret@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/13 17:08:52 by jauffret          #+#    #+#             */
-/*   Updated: 2023/03/20 15:33:43 by jauffret         ###   ########.fr       */
+/*   Updated: 2023/03/20 18:46:31 by jauffret         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,10 @@
 #include "get_next_line.h"
 #include "libft.h"
 
-void	dataset(t_data *data, char *txt)
+int	dataset(t_data *data, char *txt)
 {
-	data->map = get_map(txt);
+	if (!get_map(txt, 0, 0, &data->map))
+		return (0);
 	data->g_mpos.x = 0;
 	data->g_mpos.y = 0;
 	data->g_mzoom = 10;
@@ -29,6 +30,7 @@ void	dataset(t_data *data, char *txt)
 	data->f = &iso_proj;
 	mlx_mouse_hide(data->mlx, data->win);
 	mlx_mouse_move(data->mlx, data->win, WIDTH / 2, HEIGHT / 2);
+	return (1);
 }
 
 int	ft_counti(char *src)
@@ -47,25 +49,25 @@ int	ft_counti(char *src)
 	return (i);
 }
 
-t_map	map_color(t_map map, char *file, int i)
+t_map	*map_color(t_map *map, char *file, int i)
 {
 	char	*txt;
 	char	**val;
 	int		obj;
 	int		j;
 
-	map.mapcol = malloc(sizeof(int *) * map.sizey);
+	map->mapcol = malloc(sizeof(int *) * map->sizey);
 	obj = open(file, O_RDONLY);
-	while (i < map.sizey)
+	while (i < map->sizey)
 	{
-		map.mapcol[i] = malloc(sizeof(int) * map.sizex);
+		map->mapcol[i] = malloc(sizeof(int) * map->sizex);
 		txt = get_next_line(obj);
 		j = 0;
 		val = ft_split(txt, ' ');
 		free(txt);
-		while (j < map.sizex)
+		while (j < map->sizex)
 		{
-			map.mapcol[i][j] = atoibaseskip(val[j]);
+			map->mapcol[i][j] = atoibaseskip(val[j]);
 			free(val[j++]);
 		}
 		free(val);
@@ -75,25 +77,25 @@ t_map	map_color(t_map map, char *file, int i)
 	return (map);
 }
 
-t_map	map_create(t_map map, char *file, int i)
+t_map	*map_create(t_map *map, char *file, int i)
 {
 	char	*txt;
 	char	**val;
 	int		obj;
 	int		j;
 
-	map.mappos = malloc(sizeof(int *) * map.sizey);
+	map->mappos = malloc(sizeof(int *) * map->sizey);
 	obj = open(file, O_RDONLY);
-	while (i < map.sizey)
+	while (i < map->sizey)
 	{
-		map.mappos[i] = malloc(sizeof(int) * map.sizex);
+		map->mappos[i] = malloc(sizeof(int) * map->sizex);
 		txt = get_next_line(obj);
 		j = 0;
 		val = ft_split(txt, ' ');
 		free(txt);
-		while (j < map.sizex)
+		while (j < map->sizex)
 		{
-			map.mappos[i][j] = ft_atoi(val[j]);
+			map->mappos[i][j] = ft_atoi(val[j]);
 			free(val[j++]);
 		}
 		free(val);
@@ -103,13 +105,10 @@ t_map	map_create(t_map map, char *file, int i)
 	return (map_color(map, file, 0));
 }
 
-t_map	get_map(char *file)
+int	get_map(char *file, int x, int y, t_map *map)
 {
 	int		obj;
-	int		x;
-	int		y;
 	char	*txt;
-	t_map	map;
 
 	obj = open(file, O_RDONLY);
 	txt = get_next_line(obj);
@@ -119,11 +118,15 @@ t_map	get_map(char *file)
 	{
 		free(txt);
 		txt = get_next_line(obj);
+		if (txt)
+			if (ft_counti(txt) != x)
+				return (0);
 		y++;
 	}
 	free(txt);
 	close(obj);
-	map.sizex = x;
-	map.sizey = y;
-	return (map_create(map, file, 0));
+	map->sizex = x;
+	map->sizey = y;
+	map = map_create(map, file, 0);
+	return (1);
 }

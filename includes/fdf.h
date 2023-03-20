@@ -6,7 +6,7 @@
 /*   By: jauffret <jauffret@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/13 12:36:42 by jauffret          #+#    #+#             */
-/*   Updated: 2023/03/20 16:29:15 by jauffret         ###   ########.fr       */
+/*   Updated: 2023/03/20 18:41:02 by jauffret         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -110,11 +110,11 @@ struct s_data
 t_Vector3	vector3(float x, float y, float z);
 int			get_sign(int i);
 t_Int2		int2(float x, float y);
-t_map		get_map(char *file);
+int			get_map(char *file, int x, int y, t_map *map);
 t_Int2		iso_proj(t_Vector3 obj, t_data *data);
 t_mat4		initmat4(int val);
 t_Int2		con_proj(t_Vector3 obj, t_data *data);
-void		dataset(t_data *data, char *txt);
+int			dataset(t_data *data, char *txt);
 void		img_pix_put(t_img *img, int x, int y, int color);
 int			render(t_data *data);
 int			atoibaseskip(char *nbr);
@@ -134,5 +134,6 @@ int			get_t(int trgb);
 int			get_r(int trgb);
 int			get_g(int trgb);
 int			get_b(int trgb);
+void		hook_setup(t_data *data);
 
 #endif
