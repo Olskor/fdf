@@ -6,7 +6,7 @@
 /*   By: olskor <olskor@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/11 17:07:13 by jauffret          #+#    #+#             */
-/*   Updated: 2023/03/19 19:27:39 by olskor           ###   ########.fr       */
+/*   Updated: 2023/03/20 13:14:08 by olskor           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,8 +57,6 @@ int	handle_input(int keysym, t_data *data)
 		data->theta += 0.1f;
 	if (keysym == XK_d)
 		data->theta -= 0.1f;
-	if (data->g_mzoom <= 0)
-		data->g_mzoom = 1;
 	return (input_next(keysym, data));
 }
 
@@ -84,7 +82,7 @@ int	main(int argc, char **argv)
 	data.img.addr = mlx_get_data_addr(data.img.mlx_img, &data.img.bpp,
 			&data.img.line_len, &data.img.endian);
 	mlx_loop_hook(data.mlx, &loop, &data);
-	mlx_mouse_hook(data.win, &mouse_handle, &data);
+	mlx_hook(data.win, 4, 1L << 2, &mouse_handle, &data);
 	mlx_hook(data.win, 2, 1L << 0, &handle_input, &data);
 	mlx_hook(data.win, 17, 1L << 0, &close_window, &data);
 	mlx_loop(data.mlx);

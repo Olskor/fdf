@@ -6,7 +6,7 @@
 /*   By: olskor <olskor@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/13 12:36:42 by jauffret          #+#    #+#             */
-/*   Updated: 2023/03/19 20:45:25 by olskor           ###   ########.fr       */
+/*   Updated: 2023/03/19 21:24:58 by olskor           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,6 +100,7 @@ struct s_data
 	float	near;
 	float	fov;
 	float	theta;
+	t_Int2	mouspos;
 	t_img	img;
 	t_Int2	(*f)();
 };
