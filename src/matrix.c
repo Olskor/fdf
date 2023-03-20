@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   matrix.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jauffret <jauffret@student.42.fr>          +#+  +:+       +#+        */
+/*   By: olskor <olskor@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/20 15:23:38 by jauffret          #+#    #+#             */
-/*   Updated: 2023/03/20 15:44:05 by jauffret         ###   ########.fr       */
+/*   Updated: 2023/03/20 20:35:22 by olskor           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ t_Vector3	matrixmul(t_Vector3 i, t_mat4 m)
 
 int	max(int x, int y)
 {
-	if (x > y)
+	if (x >= y)
 		return (x);
 	return (y);
 }

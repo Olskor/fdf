@@ -3,14 +3,21 @@
 /*                                                        :::      ::::::::   */
 /*   line_drawer.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jauffret <jauffret@student.42.fr>          +#+  +:+       +#+        */
+/*   By: olskor <olskor@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/20 16:11:13 by jauffret          #+#    #+#             */
-/*   Updated: 2023/03/20 18:12:45 by jauffret         ###   ########.fr       */
+/*   Updated: 2023/03/20 20:39:42 by olskor           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
+
+int	abs_max(int x, int y)
+{
+	if (abs(x) > abs(y))
+		return (abs(x));
+	return (abs(y));
+}
 
 int	checkline(t_Int2 pos1, t_Int2 pos2)
 {
@@ -46,7 +53,7 @@ void	lined(t_Int2 pos1, t_Int2 pos2, t_Int2 col, t_data *data)
 	t_Int2	pos;
 
 	dpos = int2(pos2.x - pos1.x, pos2.y - pos1.y);
-	len = abs(max(dpos.x, dpos.y));
+	len = abs_max(dpos.x, dpos.y);
 	if (abs(dpos.x) > abs(dpos.y))
 	{
 		pos.x = pos1.x;
@@ -54,7 +61,7 @@ void	lined(t_Int2 pos1, t_Int2 pos2, t_Int2 col, t_data *data)
 		{
 			pos.y = pos1.y + dpos.y * (pos.x - pos1.x) / dpos.x;
 			img_pix_put(&data->img, pos.x, pos.y, color
-				(abs(max(pos.x - pos1.x, pos.y - pos1.y)), len, col));
+				(abs_max(pos.x - pos1.x, pos.y - pos1.y), len, col));
 			pos.x += get_sign(dpos.x);
 		}
 	}
@@ -63,7 +70,7 @@ void	lined(t_Int2 pos1, t_Int2 pos2, t_Int2 col, t_data *data)
 	{
 		pos.x = pos1.x + dpos.x * (pos.y - pos1.y) / dpos.y;
 		img_pix_put(&data->img, pos.x, pos.y, color
-			(abs(max(pos.x - pos1.x, pos.y - pos1.y)), len, col));
+			(abs_max(pos.x - pos1.x, pos.y - pos1.y), len, col));
 		pos.y += get_sign(dpos.y);
 	}
 }

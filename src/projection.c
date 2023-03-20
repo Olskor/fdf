@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   projection.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jauffret <jauffret@student.42.fr>          +#+  +:+       +#+        */
+/*   By: olskor <olskor@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/14 14:31:34 by jauffret          #+#    #+#             */
-/*   Updated: 2023/03/20 15:35:02 by jauffret         ###   ########.fr       */
+/*   Updated: 2023/03/20 20:48:35 by olskor           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,7 +64,5 @@ t_Int2	con_proj(t_Vector3 obj, t_data *data)
 	obj.y += 1.0f;
 	projected.x = obj.x * 0.5f * (float)data->wi;
 	projected.y = obj.y * 0.5f * (float)data->he;
-	if (obj.z <= 1.0f)
-		projected = int2(0, 0);
 	return (projected);
 }

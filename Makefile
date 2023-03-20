@@ -19,8 +19,8 @@ MAGENTA = \033[0;95m
 CYAN = \033[0;96m
 WHITE = \033[0;97m
 
-WIDTH = 1920
-HEIGHT = 1080
+WIDTH = 800
+HEIGHT = 600
 
 SRC_FILES	=	main map_reader position_handler get_next_line projection renderer atoibase input_handler matrix color line_drawer
 LIBS_FILES	=	libft libmlx
