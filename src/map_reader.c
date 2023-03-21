@@ -6,7 +6,7 @@
 /*   By: olskor <olskor@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/13 17:08:52 by jauffret          #+#    #+#             */
-/*   Updated: 2023/03/20 20:45:05 by olskor           ###   ########.fr       */
+/*   Updated: 2023/03/21 04:21:24 by olskor           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,7 +67,7 @@ t_map	*map_color(t_map *map, char *file, int i)
 		free(txt);
 		while (j < map->sizex)
 		{
-			map->mapcol[i][j] = atoibaseskip(val[j]);
+			map->mapcol[i][j] = atoibaseskip(val[j], map);
 			free(val[j++]);
 		}
 		free(val);
@@ -102,6 +102,7 @@ t_map	*map_create(t_map *map, char *file, int i)
 		i++;
 	}
 	close(obj);
+	map->tri = 0;
 	return (map_color(map, file, 0));
 }
 

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   fdf.h                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jauffret <jauffret@student.42.fr>          +#+  +:+       +#+        */
+/*   By: olskor <olskor@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/13 12:36:42 by jauffret          #+#    #+#             */
-/*   Updated: 2023/03/20 18:41:02 by jauffret         ###   ########.fr       */
+/*   Updated: 2023/03/21 04:41:05 by olskor           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,6 +66,7 @@ typedef struct s_map
 	int	sizey;
 	int	**mappos;
 	int	**mapcol;
+	int	tri;
 }		t_map;
 
 typedef struct s_img
@@ -76,15 +77,6 @@ typedef struct s_img
 	int		line_len;
 	int		endian;
 }	t_img;
-
-typedef struct s_cam
-{
-	float		near;
-	float		far;
-	float		fov;
-	t_Vector3	pos;
-	t_Vector3	rot;
-}	t_cam;
 
 typedef struct s_data	t_data;
 struct s_data
@@ -117,7 +109,7 @@ t_Int2		con_proj(t_Vector3 obj, t_data *data);
 int			dataset(t_data *data, char *txt);
 void		img_pix_put(t_img *img, int x, int y, int color);
 int			render(t_data *data);
-int			atoibaseskip(char *nbr);
+int			atoibaseskip(char *nbr, t_map *map);
 int			loop(t_data *data);
 int			mouse_handle(int button, int x, int y, t_data *data);
 int			input_next(int keysym, t_data *data);
@@ -125,9 +117,7 @@ int			handle_input(int keysym, t_data *data);
 int			close_window(t_data *data);
 t_Vector3	matrixmul(t_Vector3 i, t_mat4 m);
 int			max(int x, int y);
-t_Vector3	rotz(t_Vector3 i, float theta);
-t_Vector3	rotx(t_Vector3 i, float theta);
-t_Vector3	roty(t_Vector3 i, float theta);
+t_Vector3	rota(t_Vector3 i, float z, float y, float x);
 void		draw_line(t_data *data, t_Int2 pos1, t_Int2 pos2);
 int			create_trgb(int t, int r, int g, int b);
 int			get_t(int trgb);

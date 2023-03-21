@@ -6,7 +6,7 @@
 /*   By: olskor <olskor@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/14 14:31:34 by jauffret          #+#    #+#             */
-/*   Updated: 2023/03/20 20:48:35 by olskor           ###   ########.fr       */
+/*   Updated: 2023/03/21 04:41:48 by olskor           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,9 +18,7 @@ t_Int2	iso_proj(t_Vector3 obj, t_data *data)
 
 	obj.x += (float)data->map.sizey / 2;
 	obj.y -= (float)data->map.sizex / 2;
-	obj = rotz(obj, data->zrot);
-	obj = rotx(obj, data->xrot);
-	obj = roty(obj, data->yrot);
+	obj = rota(obj, data->zrot, data->yrot, data->xrot);
 	obj.x += data->g_mpos.x + data->g_mpos.y;
 	obj.y += data->g_mpos.y - data->g_mpos.x;
 	pos.x = (data->wi / 2) + data->g_mzoom * (obj.y - obj.x) / sqrt(2);
@@ -35,9 +33,7 @@ t_Vector3	transform(t_Vector3 i, t_data *data)
 
 	i.x += ((float)data->map.sizey / 2);
 	i.y -= ((float)data->map.sizex / 2);
-	i = rotz(i, data->zrot);
-	i = rotx(i, data->xrot);
-	i = roty(i, data->yrot);
+	i = rota(i, data->zrot, data->yrot, data->xrot);
 	o.x = i.x + data->g_mpos.x;
 	o.y = i.z + data->g_mpos.y;
 	o.z = -i.y - (float)max(data->map.sizex, data->map.sizey);

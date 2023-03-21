@@ -6,7 +6,7 @@
 /*   By: olskor <olskor@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/16 01:13:30 by olskor            #+#    #+#             */
-/*   Updated: 2023/03/20 20:39:54 by olskor           ###   ########.fr       */
+/*   Updated: 2023/03/21 04:23:44 by olskor           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,6 +78,8 @@ int	render(t_data *data)
 		{
 			draw_line(data, int2(p.x, p.y), int2(p.x, p.y + 1));
 			draw_line(data, int2(p.x, p.y), int2(p.x + 1, p.y));
+			if (data->map.tri)
+				draw_line(data, int2(p.x + 1, p.y), int2(p.x, p.y + 1));
 			if (p.x >= data->map.sizex - 2)
 				draw_line(data, int2(p.x + 1, p.y), int2(p.x + 1, p.y + 1));
 			if (p.y >= data->map.sizey - 2)

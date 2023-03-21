@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   atoibase.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jauffret <jauffret@student.42.fr>          +#+  +:+       +#+        */
+/*   By: olskor <olskor@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/16 01:33:00 by olskor            #+#    #+#             */
-/*   Updated: 2023/03/20 14:11:52 by jauffret         ###   ########.fr       */
+/*   Updated: 2023/03/21 04:22:33 by olskor           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,7 +93,7 @@ int	ft_atoibase(char *nbr_b, char *base)
 	return (nbr);
 }
 
-int	atoibaseskip(char *nbr)
+int	atoibaseskip(char *nbr, t_map *map)
 {
 	int	i;
 	int	atoi;
@@ -112,6 +112,7 @@ int	atoibaseskip(char *nbr)
 					atoi = ft_atoibase((nbr + i), "0123456789abcdef");
 				if (atoi == 0)
 					atoi = 16777215;
+				map->tri = 1;
 				return (atoi);
 			}
 		}
