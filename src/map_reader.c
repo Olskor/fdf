@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   map_reader.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: olskor <olskor@student.42.fr>              +#+  +:+       +#+        */
+/*   By: jauffret <jauffret@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/13 17:08:52 by jauffret          #+#    #+#             */
-/*   Updated: 2023/03/21 04:21:24 by olskor           ###   ########.fr       */
+/*   Updated: 2023/03/21 14:51:41 by jauffret         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -112,9 +112,9 @@ int	get_map(char *file, int x, int y, t_map *map)
 	char	*txt;
 
 	obj = open(file, O_RDONLY);
-	if (obj == -1)
-		return (0);
 	txt = get_next_line(obj);
+	if (!txt)
+		return (0);
 	x = ft_counti(txt);
 	y = 0;
 	while (txt)
