@@ -6,7 +6,7 @@
 /*   By: jauffret <jauffret@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/11 17:07:13 by jauffret          #+#    #+#             */
-/*   Updated: 2023/03/20 18:48:42 by jauffret         ###   ########.fr       */
+/*   Updated: 2023/03/24 13:34:44 by jauffret         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,10 +37,10 @@ int	main(int argc, char **argv)
 	t_data	data;
 
 	if (argc <= 1)
-		return (1);
+		return (write(2, "error: not enough argument\n", 27));
 	data.mlx = mlx_init();
 	if (!data.mlx)
-		return (1);
+		return (write(2, "error: memory\n", 14));
 	data.wi = WIDTH;
 	data.he = HEIGHT;
 	data.win = mlx_new_window(data.mlx, data.wi, data.he, "fdf");
@@ -50,7 +50,7 @@ int	main(int argc, char **argv)
 		return (1);
 	}
 	if (!dataset(&data, argv[1]))
-		return (write(2, "erreur: map format\n", 19));
+		return (write(2, "error: map format\n", 18));
 	data.img.mlx_img = mlx_new_image(data.mlx, WIDTH, HEIGHT);
 	data.img.addr = mlx_get_data_addr(data.img.mlx_img, &data.img.bpp,
 			&data.img.line_len, &data.img.endian);
