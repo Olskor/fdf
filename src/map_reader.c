@@ -6,7 +6,7 @@
 /*   By: jauffret <jauffret@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/13 17:08:52 by jauffret          #+#    #+#             */
-/*   Updated: 2023/03/21 14:51:41 by jauffret         ###   ########.fr       */
+/*   Updated: 2023/03/24 15:09:25 by jauffret         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,7 @@ int	dataset(t_data *data, char *txt)
 	data->zrot = 0.0f;
 	data->xrot = 0.0f;
 	data->yrot = 0.0f;
+	data->rotate = 0;
 	data->f = &iso_proj;
 	mlx_mouse_hide(data->mlx, data->win);
 	mlx_mouse_move(data->mlx, data->win, WIDTH / 2, HEIGHT / 2);

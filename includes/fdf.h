@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   fdf.h                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: olskor <olskor@student.42.fr>              +#+  +:+       +#+        */
+/*   By: jauffret <jauffret@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/13 12:36:42 by jauffret          #+#    #+#             */
-/*   Updated: 2023/03/21 04:41:05 by olskor           ###   ########.fr       */
+/*   Updated: 2023/03/24 15:06:33 by jauffret         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,6 +94,7 @@ struct s_data
 	float	zrot;
 	float	yrot;
 	float	xrot;
+	int		rotate;
 	t_Int2	mouspos;
 	t_img	img;
 	t_Int2	(*f)();

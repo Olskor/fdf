@@ -6,7 +6,7 @@
 /*   By: jauffret <jauffret@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/20 13:18:17 by jauffret          #+#    #+#             */
-/*   Updated: 2023/03/20 18:26:58 by jauffret         ###   ########.fr       */
+/*   Updated: 2023/03/24 15:10:01 by jauffret         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,6 +60,13 @@ int	input_next(int keysym, t_data *data)
 		data->yrot += 0.1f;
 	if (keysym == XK_d)
 		data->yrot -= 0.1f;
+	if (keysym == XK_r)
+	{
+		if (data->rotate)
+			data->rotate = 0;
+		else
+			data->rotate = 1;
+	}
 	return (0);
 }
 

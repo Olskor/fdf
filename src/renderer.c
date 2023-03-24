@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   renderer.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: olskor <olskor@student.42.fr>              +#+  +:+       +#+        */
+/*   By: jauffret <jauffret@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/16 01:13:30 by olskor            #+#    #+#             */
-/*   Updated: 2023/03/21 04:23:44 by olskor           ###   ########.fr       */
+/*   Updated: 2023/03/24 15:09:13 by jauffret         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,6 +88,8 @@ int	render(t_data *data)
 		}
 		p.x = 0 * p.y++;
 	}
+	if (data->rotate)
+		data->zrot += 0.01f;
 	mlx_put_image_to_window(data->mlx, data->win, data->img.mlx_img, 0, 0);
 	return (0);
 }
